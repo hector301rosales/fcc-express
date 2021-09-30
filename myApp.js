@@ -12,13 +12,13 @@ abosultePath = __dirname + "/views/index.html";
 app.use(function(req, res, next) {
     console.log(req.method, req.path, " - ", req.ip);
     next();
-})
+});
 
 app.use("/public", express.static(__dirname + "/public"));
 
 app.get("/", (req, res) => {
     res.sendFile(abosultePath);
-})
+});
 
 app.get("/json", (req, res) => {
     let message = "Hello json";
@@ -31,7 +31,7 @@ app.get("/json", (req, res) => {
     res.json({
 "message": response
     })
-})
+});
 
 //Chain middleware
 app.get("/now", function(req, res, next) {
@@ -47,38 +47,12 @@ app.get("/:word/echo", (req, res) => {
     res.json({
         "echo": req.params.word
     })
+});
+
+app.get("/name", (req, res) => {
+    res.json({
+        "name": req.query.first + " " + req.query.last
+    })
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 module.exports = app;
