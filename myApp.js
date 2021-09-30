@@ -33,6 +33,7 @@ app.get("/json", (req, res) => {
     })
 })
 
+//Chain middleware
 app.get("/now", function(req, res, next) {
     req.time = new Date().toString();
     next();
@@ -42,6 +43,11 @@ app.get("/now", function(req, res, next) {
     })
 });
 
+app.get("/:word/echo", (req, res) => {
+    res.json({
+        "echo": req.params.word
+    })
+})
 
 
 
