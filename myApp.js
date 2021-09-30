@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+const bodyParser = require('body-parser');
 require('dotenv').config();
 
 
@@ -15,6 +16,8 @@ app.use(function(req, res, next) {
 });
 
 app.use("/public", express.static(__dirname + "/public"));
+
+app.use(bodyParser.urlencoded({extended: false}));
 
 app.get("/", (req, res) => {
     res.sendFile(abosultePath);
