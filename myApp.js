@@ -70,7 +70,7 @@ app.post("/name", (req, res) => {
 const personSchema = new Schema({
     name: String,
     age: Number,
-    favoriteFoods: [Strings]
+    favoriteFoods: [String]
 });
 
 //creating model from schema above
