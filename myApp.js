@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const { Schema } = mongoose;
 require('dotenv').config();
 
 
@@ -65,6 +66,18 @@ app.post("/name", (req, res) => {
     })
 });
 
-mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true});
+//creating schema
+const personSchema = new Schema({
+    name: String,
+    age: Number,
+    favoriteFoods: [Strings]
+});
+
+//creating model from schema above
+const Person = mongoose.model('Person', personSchema);
+
+mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true}, () => {
+    console.log('connected');
+});
 
 module.exports = app;
