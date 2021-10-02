@@ -76,6 +76,19 @@ const personSchema = new Schema({
 //creating model from schema above
 const Person = mongoose.model('Person', personSchema);
 
+function createAndSavePerson(name, age, favoriteFoods) {
+    const person = new Person({
+        name,
+        age,
+        favoriteFoods
+    });
+    person.save(function(err) {
+        if(err) return console.error(err);
+    })
+}
+
+createAndSavePerson('jame', 24, ['fast', 'fries']);
+
 mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true}, () => {
     console.log('connected');
 });
